@@ -101,7 +101,7 @@ export default function About() {
               </div>
               <div className="px-12 md:px-24">
                 <Image
-                  src={"/h4i.JPG"}
+                  src={"/h4i.jpg"}
                   alt="img of favorite people"
                   className="rounded-3xl"
                   width={650}
