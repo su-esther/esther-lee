@@ -23,10 +23,9 @@ export default function About() {
   }, [inView]);
 
   const [isLoading, setIsLoading] = React.useState(true);
-  React.useEffect(() => {
-    setIsLoading(false);
-  }, []);
+
   const handleImageLoad = () => {
+    console.log("about image loaded!");
     setIsLoading(false);
   };
 
@@ -100,6 +99,7 @@ export default function About() {
               </div>
               <div className="md:px-12 py-12 md:py-8">
                 {isLoading && <Skeleton className="h-[350px] w-[650px]" />}
+
                 <Image
                   src={"/h4i.jpg"}
                   alt="img of favorite people"

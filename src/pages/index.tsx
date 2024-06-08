@@ -22,10 +22,9 @@ export default function Home() {
   const carouselAnimation = useAnimation();
 
   const [isLoading, setIsLoading] = React.useState(true);
-  React.useEffect(() => {
-    setIsLoading(false);
-  }, []);
+
   const handleImageLoad = () => {
+    console.log("img loaded!");
     setIsLoading(false);
   };
 
@@ -56,6 +55,7 @@ export default function Home() {
                   height={632}
                   alt="EL"
                   className="rounded-[80px]"
+                  onLoad={handleImageLoad}
                 ></Image>
               </div>
               <div className="object-bottom align-bottom h-full font-opensans tracking-widest">
