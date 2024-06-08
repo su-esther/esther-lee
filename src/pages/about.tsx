@@ -1,26 +1,16 @@
 import * as React from "react";
 
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import { NavigationBar } from "@/components/navigation-bar";
-import { ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
-import Footer from "@/components/footer";
 import Image from "next/image";
 import {
   AnimatePresence,
   motion,
-  useAnimate,
   useAnimation,
   useInView,
 } from "framer-motion";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function About() {
   const ref = React.useRef(null);
@@ -31,10 +21,19 @@ export default function About() {
       carouselAnimation.start("visible");
     }
   }, [inView]);
+
+  const [isLoading, setIsLoading] = React.useState(true);
+  React.useEffect(() => {
+    setIsLoading(false);
+  }, []);
+  const handleImageLoad = () => {
+    setIsLoading(false);
+  };
+
   return (
-    <div className="bg-notion">
+    <div>
       <NavigationBar />
-      <div className="flex flex-col p-20" ref={ref}>
+      <div className="flex flex-col p-10 md:p-20" ref={ref}>
         <AnimatePresence>
           <motion.div
             variants={{
@@ -50,7 +49,7 @@ export default function About() {
               <span className="text-[#2876FA]">positively impact</span> the
               community{" "}
             </CardTitle>
-            <div className="flex flex-row justify-between">
+            <div className="flex flex-col justify-between lg:flex-row">
               <div className="flex flex-col gap-12">
                 <div className="flex flex-col gap-2">
                   <h3 className="font-bold font-opensans text-[24px]">
@@ -99,10 +98,12 @@ export default function About() {
                   </p>
                 </div>
               </div>
-              <div className="px-12 md:px-24">
+              <div className="md:px-12 py-12 md:py-8">
+                {isLoading && <Skeleton className="h-[350px] w-[650px]" />}
                 <Image
                   src={"/h4i.jpg"}
                   alt="img of favorite people"
+                  onLoad={handleImageLoad}
                   className="rounded-3xl"
                   width={650}
                   height={650}

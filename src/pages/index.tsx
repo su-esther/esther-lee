@@ -1,27 +1,33 @@
-import { ProjectCarousel } from "@/components/project-carousel";
-import { TextArea } from "@/components/text-area";
 import Image from "next/image";
 import { NavigationBar } from "@/components/navigation-bar";
 import { CardTitle } from "@/components/ui/card";
-import { SkillCard } from "@/components/skill-card";
 import {
   AnimatePresence,
   motion,
   useAnimation,
   useInView,
 } from "framer-motion";
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Footer } from "@/components/footer";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import GithubIcon from "@/components/ui/githubicon";
 import LinkedInIcon from "@/components/ui/linkedinicon";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default function Home() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
 
   const carouselAnimation = useAnimation();
+
+  const [isLoading, setIsLoading] = React.useState(true);
+  React.useEffect(() => {
+    setIsLoading(false);
+  }, []);
+  const handleImageLoad = () => {
+    setIsLoading(false);
+  };
 
   useEffect(() => {
     if (inView) {
@@ -40,12 +46,16 @@ export default function Home() {
             transition={{ delay: 0.5, duration: 2 }}
           >
             <div className="flex flex-row md:gap-36 gap-8 items-end">
-              <div className="rounded-[80px] overflow-hidden">
+              <div className="rounded-[80px]">
+                {isLoading && (
+                  <Skeleton className="h-[632px] w-[398px] rounded-[80px]" />
+                )}
                 <Image
                   src={"/scholarship_headshot.jpg"}
                   width={398}
                   height={632}
                   alt="EL"
+                  className="rounded-[80px]"
                 ></Image>
               </div>
               <div className="object-bottom align-bottom h-full font-opensans tracking-widest">
