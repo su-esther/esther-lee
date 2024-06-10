@@ -7,7 +7,7 @@ import {
   useAnimation,
   useInView,
 } from "framer-motion";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Footer } from "@/components/footer";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -22,16 +22,47 @@ export default function Home() {
   const carouselAnimation = useAnimation();
 
   const [isLoading, setIsLoading] = React.useState(true);
+  const [imageData, setImageData] = useState<string | null>(null);
 
   const handleImageLoad = () => {
     console.log("img loaded!");
     setIsLoading(false);
   };
 
+  const loadImageData = async () => {
+    try {
+      const response = await fetch("/scholarship_headshot.jpg");
+      if (!response.ok) {
+        throw new Error("Failed to load image");
+      }
+      const blob = await response.blob();
+      return URL.createObjectURL(blob);
+    } catch (error) {
+      console.error("Error loading image:", error);
+      return null;
+    }
+  };
+
   useEffect(() => {
     if (inView) {
       carouselAnimation.start("visible");
     }
+    const loadImage = async () => {
+      const data = await loadImageData();
+      if (data) {
+        setImageData(data);
+        setIsLoading(false);
+      }
+    };
+
+    loadImage();
+
+    // Clean up function to revoke the object URL when component unmounts
+    return () => {
+      if (imageData) {
+        URL.revokeObjectURL(imageData);
+      }
+    };
   }, [inView]);
 
   return (
@@ -49,18 +80,16 @@ export default function Home() {
                 {isLoading && (
                   <Skeleton className="h-[632px] w-[398px] rounded-[80px]" />
                 )}
-                <Image
-                  src={"/scholarship_headshot.jpg"}
-                  width={398}
-                  height={632}
-                  alt="EL"
-                  className="rounded-[80px]"
-                  onLoad={handleImageLoad}
-                  // style={{
-                  //   width: "100%",
-                  //   height: "auto",
-                  // }}
-                ></Image>
+                {!isLoading && (
+                  <Image
+                    src={"/scholarship_headshot.jpg"}
+                    width={398}
+                    height={632}
+                    alt="EL"
+                    className="rounded-[80px]"
+                    onLoad={handleImageLoad}
+                  ></Image>
+                )}
               </div>
               <div className="object-bottom align-bottom h-full font-opensans tracking-widest flex-1">
                 <h1 className="text-[24px] md:text-[42px] font-bold">
