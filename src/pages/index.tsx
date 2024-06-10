@@ -44,8 +44,8 @@ export default function Home() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 2 }}
           >
-            <div className="flex flex-col md:flex-row md:gap-28 gap-8 items-end justify-between px-16 md:px-56">
-              <div className="rounded-[80px]">
+            <div className="flex flex-col md:flex-row md:gap-24 gap-8 items-end justify-between px-16 lg:px-56">
+              <div className="rounded-[80px] flex-1 flex flex-row w-[200px] md:w-[398px] mr-auto">
                 {isLoading && (
                   <Skeleton className="h-[632px] w-[398px] rounded-[80px]" />
                 )}
@@ -56,10 +56,14 @@ export default function Home() {
                   alt="EL"
                   className="rounded-[80px]"
                   onLoad={handleImageLoad}
+                  // style={{
+                  //   width: "100%",
+                  //   height: "auto",
+                  // }}
                 ></Image>
               </div>
-              <div className="object-bottom align-bottom h-full font-opensans tracking-widest">
-                <h1 className="text-[24px] md:text-[52px] font-bold">
+              <div className="object-bottom align-bottom h-full font-opensans tracking-widest flex-1">
+                <h1 className="text-[24px] md:text-[42px] font-bold">
                   Pleased to meet you, <br></br>
                   I'm <span className="text-[#2876FA]">Esther Lee</span>
                 </h1>
@@ -110,7 +114,7 @@ export default function Home() {
                 Past Involvements
               </CardTitle>
               <div className="flex flex-col gap-44">
-                <div className="flex flex-col md:flex-row items-center gap-24">
+                <div className="flex flex-col md:flex-row items-center gap-24 p-3 bg-[#f1f5f9]  lg:p-24">
                   <div>
                     <Image
                       src={"/opcode-logo.png"}
@@ -145,7 +149,7 @@ export default function Home() {
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-col md:flex-row items-center gap-24">
+                <div className="flex flex-col md:flex-row items-center gap-24 lg:p-24">
                   <div className="w-[347px] flex flex-col gap-4">
                     <Link
                       href={"https://clearpathnyc.com/signin"}
@@ -179,7 +183,7 @@ export default function Home() {
                     ></Image>
                   </div>
                 </div>
-                <div className="flex flex-col md:flex-row items-center gap-24">
+                <div className="flex flex-col md:flex-row items-center gap-24 bg-[#f1f5f9]  lg:p-24">
                   <div>
                     <Image
                       src={"/poster-preview.png"}
