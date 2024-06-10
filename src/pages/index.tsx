@@ -37,14 +37,14 @@ export default function Home() {
   return (
     <div className="bg-[#ffffff]">
       <NavigationBar></NavigationBar>
-      <div className="flex flex-col items-center gap-16 py-36 pb-60">
+      <div className="flex flex-col py-36 pb-60">
         <AnimatePresence>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 2 }}
           >
-            <div className="flex flex-row md:gap-36 gap-8 items-end">
+            <div className="flex flex-col md:flex-row md:gap-28 gap-8 items-end justify-between px-16 md:px-56">
               <div className="rounded-[80px]">
                 {isLoading && (
                   <Skeleton className="h-[632px] w-[398px] rounded-[80px]" />
@@ -59,16 +59,16 @@ export default function Home() {
                 ></Image>
               </div>
               <div className="object-bottom align-bottom h-full font-opensans tracking-widest">
-                <h1 className="scroll-m-20 text-[52px] font-bold">
+                <h1 className="text-[24px] md:text-[52px] font-bold">
                   Pleased to meet you, <br></br>
                   I'm <span className="text-[#2876FA]">Esther Lee</span>
                 </h1>
-                <p className="leading-tight [&:not(:first-child)]:mt-6 text-[22px] w-[530px]">
+                <p className="leading-tight [&:not(:first-child)]:mt-6 text-[22px]">
                   I’m a{" "}
                   <span className="text-[#2876FA]">software engineer</span>{" "}
                   studying at UIUC (graduating soon) 💙💻 <br></br>
                 </p>
-                <p className="leading-tight [&:not(:first-child)]:mt-6 text-[22px] w-[530px] flex gap-3 items-center">
+                <p className="leading-tight [&:not(:first-child)]:mt-6 text-[22px] flex gap-3 items-center">
                   Take a look at what I’ve been up to!{" "}
                   <Link
                     href={"https://github.com/su-esther"}
@@ -110,7 +110,7 @@ export default function Home() {
                 Past Involvements
               </CardTitle>
               <div className="flex flex-col gap-44">
-                <div className="flex flex-row items-center gap-24">
+                <div className="flex flex-col md:flex-row items-center gap-24">
                   <div>
                     <Image
                       src={"/opcode-logo.png"}
@@ -127,20 +127,38 @@ export default function Home() {
                     ></Image>
                   </div>
                   <div className="w-[347px] flex flex-col gap-4">
-                    <h3 className="font-bold font-opensans text-[24px]">
-                      Operation Code
-                    </h3>
+                    <Link
+                      href={"https://job-hunt-oc.vercel.app/"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button
+                        variant={"link"}
+                        className="font-bold font-opensans text-[24px] pl-0"
+                      >
+                        Operation Code
+                      </Button>
+                    </Link>
                     <p className="font-opensans text-[24px]">
                       Job platform optimized for veterans to find career
                       opportunities.
                     </p>
                   </div>
                 </div>
-                <div className="flex flex-row items-center gap-24">
+                <div className="flex flex-col md:flex-row items-center gap-24">
                   <div className="w-[347px] flex flex-col gap-4">
-                    <h3 className="font-bold font-opensans text-[24px]">
-                      Clearpath NYC
-                    </h3>
+                    <Link
+                      href={"https://clearpathnyc.com/signin"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button
+                        variant={"link"}
+                        className="font-bold font-opensans text-[24px] pl-0"
+                      >
+                        Clearpath NYC
+                      </Button>
+                    </Link>
                     <p className="font-opensans text-[24px]">
                       Map used by homeless youth to find resources.
                     </p>
@@ -161,7 +179,7 @@ export default function Home() {
                     ></Image>
                   </div>
                 </div>
-                <div className="flex flex-row items-center gap-24">
+                <div className="flex flex-col md:flex-row items-center gap-24">
                   <div>
                     <Image
                       src={"/poster-preview.png"}

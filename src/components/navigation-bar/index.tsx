@@ -55,7 +55,7 @@ const components: { title: string; href: string; description: string }[] = [
 
 export function NavigationBar() {
   return (
-    <StyledBar className="justify-between font-opensans">
+    <StyledBar className="justify-between font-opensans w-full pr-0 md:pr-[24px]">
       <div className="p-6">Esther Lee</div>
       <NavigationMenu>
         <NavigationMenuList>
